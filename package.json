@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "server": "nodemon index.js",
+    "client": "cd frontend && npm start"
+  },
+  "dependencies": {
+    "babel-plugin-macros": "^3.1.0",
+    "react-router-dom": "^6.9.0",
+    "styled-components": "^5.3.9"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.0.7",
+    "sass": "^1.59.3"
+  }
+}
