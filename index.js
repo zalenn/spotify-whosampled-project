@@ -109,6 +109,14 @@ app.get('/callback', (req, res) => {
         res.send(error);
       });
   });
+
+
+  app.get('/home', (req, res) => {
+
+
+    
+
+  });
   
 
 app.listen(port, () => {
