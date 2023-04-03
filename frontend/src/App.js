@@ -4,7 +4,22 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { access_token, logout, getCurrentUserProfile} from './spotify';
 import {catchErrors} from './utils'
 import {Home} from './pages/exports.js'
+
+
 import DaftPunk from './images/artists/daftpunk.jpeg';
+import Donuts from './images/albumcovers/donuts.jpeg';
+import BlackonBothSides from './images/albumcovers/BlackonBothSides.jpeg';
+import CollegeDropout from './images/albumcovers/collegedropout.jpeg';
+import MaggotBrain from './images/albumcovers/maggotbrain.jpeg';
+import Paul from './images/albumcovers/paulsbotique.png';
+import Endtroducing from './images/albumcovers/endtroducing.jpeg';
+import MoneyStore from './images/albumcovers/themoneystore.jpeg';
+import DownwardSpiral from './images/albumcovers/thedownwardspiral.png';
+import SinceILeftYou from './images/albumcovers/sinceileftyou.jpeg';
+import LowEndTheory from './images/albumcovers/thelowendtheory.jpeg';
+import Discovery from './images/albumcovers/discovery.png';
+import ICare from './images/albumcovers/ICareBecauseYouDo.jpeg';
+
 
 function App() {
   const [token, setToken] = useState(null);
@@ -25,18 +40,60 @@ function App() {
   return (
     <div className="App">
         {!token ? (                                         //Display Login Button if not logged in
+        <>
+    <div className = "header"></div>
       <div className='wrapper'>
-        <div className = "welcomeText">
+       <div className = "welcomeText">
            <h1 className = "welcomeTextAnimation">Welcome to (website title here) ! </h1>
            <p className = "welcomeTextAnimationP">Before we can get started making you quality recommendations, we need you authorize this application with Spotify below.  </p>
            <a className="button" href="http://localhost:8888/login"> LOGIN TO SPOTIFY </a>
-        </div>
-          <div className = "artistImg">
-            <img src = {DaftPunk} alt = "Daft Punk"/>
-         </div>
+        </div> 
       </div>
+      <div class="slideshow">
+           <div class="move">
+             <img src= {Donuts}/> 
+             <img src= {ICare}/>
+             <img src= {MaggotBrain}/>
+             <img src= {BlackonBothSides}/>
+             <img src= {CollegeDropout}/>
+             <img src= {Discovery}/>
+             <img src= {MoneyStore}/>
+             <img src= {SinceILeftYou}/>
+             <img src= {LowEndTheory}/>
+             <img src= {Paul}/>
+             <img src= {Endtroducing}/>
+             <img src= {DownwardSpiral}/>
+
+             <img src= {Donuts}/> 
+             <img src= {ICare}/>
+             <img src= {MaggotBrain}/>
+             <img src= {BlackonBothSides}/>
+             <img src= {CollegeDropout}/>
+             <img src= {Discovery}/>
+             <img src= {MoneyStore}/>
+             <img src= {SinceILeftYou}/>
+             <img src= {LowEndTheory}/>
+             <img src= {Paul}/>
+             <img src= {Endtroducing}/>
+             <img src= {DownwardSpiral}/>
+
+             <img src= {Donuts}/> 
+             <img src= {ICare}/>
+             <img src= {MaggotBrain}/>
+             <img src= {BlackonBothSides}/>
+             <img src= {CollegeDropout}/>
+             <img src= {Discovery}/>
+             <img src= {MoneyStore}/>
+             <img src= {SinceILeftYou}/>
+             <img src= {LowEndTheory}/>
+             <img src= {Paul}/>
+             <img src= {Endtroducing}/>
+             <img src= {DownwardSpiral}/>
+          </div>
+        </div>
+      </>
         ) : (
-          <>
+      <>
       <div className = "header">
          {profile && (
         <div className = "userInfo">
@@ -70,9 +127,8 @@ function App() {
           </Router>
           </>
         )}
-
         <footer>
-          {/* <p>Capstone Project for Fordham University made by Zalen Nelson</p> */}
+          <p className='footerText'>Capstone Project for Fordham University made by Zalen Nelson</p>
         </footer>
     </div>
   );
