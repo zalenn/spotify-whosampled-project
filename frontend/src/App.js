@@ -5,7 +5,6 @@ import { access_token, logout, getCurrentUserProfile} from './spotify';
 import {catchErrors} from './utils'
 import {Home} from './pages/exports.js'
 
-
 import DaftPunk from './images/artists/daftpunk.jpeg';
 import Donuts from './images/albumcovers/donuts.jpeg';
 import BlackonBothSides from './images/albumcovers/BlackonBothSides.jpeg';
@@ -36,6 +35,7 @@ function App() {
     }, []);
 
     console.log(access_token);
+    console.log("")
 
   return (
     <div className="App">
@@ -63,32 +63,6 @@ function App() {
              <img src= {Paul}/>
              <img src= {Endtroducing}/>
              <img src= {DownwardSpiral}/>
-
-             <img src= {Donuts}/> 
-             <img src= {ICare}/>
-             <img src= {MaggotBrain}/>
-             <img src= {BlackonBothSides}/>
-             <img src= {CollegeDropout}/>
-             <img src= {Discovery}/>
-             <img src= {MoneyStore}/>
-             <img src= {SinceILeftYou}/>
-             <img src= {LowEndTheory}/>
-             <img src= {Paul}/>
-             <img src= {Endtroducing}/>
-             <img src= {DownwardSpiral}/>
-
-             <img src= {Donuts}/> 
-             <img src= {ICare}/>
-             <img src= {MaggotBrain}/>
-             <img src= {BlackonBothSides}/>
-             <img src= {CollegeDropout}/>
-             <img src= {Discovery}/>
-             <img src= {MoneyStore}/>
-             <img src= {SinceILeftYou}/>
-             <img src= {LowEndTheory}/>
-             <img src= {Paul}/>
-             <img src= {Endtroducing}/>
-             <img src= {DownwardSpiral}/>
           </div>
         </div>
       </>
@@ -97,12 +71,9 @@ function App() {
       <div className = "header">
          {profile && (
         <div className = "userInfo">
-          <h1 >{profile.display_name}</h1>
-          <p>{profile.followers.total} Followers</p>
-          {profile.images.length && profile.images[0].url && (
-            <img src={profile.images[0].url} alt="Avatar"/>
-          )}
-          <button className = "button" onClick = {logout}> LOGOUT</button>
+          <h1 className = "profileName">{profile.display_name}</h1>
+          <p className='followerCount'>{profile.followers.total} Followers</p>
+          <div><button className = "buttonHeader" onClick = {logout}> LOGOUT</button></div>
         </div>
         )}
       </div>

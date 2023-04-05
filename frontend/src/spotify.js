@@ -116,3 +116,11 @@ axios.defaults.headers['Content-Type'] = 'application/json';
  * @returns {Promise}
  */
 export const getCurrentUserProfile = () => axios.get('/me');
+
+/**
+ * Search for an Item
+ * https://developer.spotify.com/documentation/web-api/reference/search
+ * @returns {Promise}
+ */
+
+export const getSearch = (query, type) => axios.get(`/search?q=${query}&type=${type}`);
