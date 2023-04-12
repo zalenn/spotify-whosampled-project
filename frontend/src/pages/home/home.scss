@@ -24,11 +24,16 @@
     text-align: center;
 }
 
+form {
+    width: 100%
+}
+
 .songInputDiv {
     display: flex;
     padding-top: 50px;
     width: 100%;
     justify-content: center;
+    padding-bottom: 30px;
 }
 
 
@@ -46,3 +51,59 @@
     cursor: pointer;
     border-radius: 500px;
 }
+
+.loadingSpinner {
+    font-size: 30px;
+    padding-top: 40px;
+}
+
+
+.songResult {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    min-width: 500px;
+}
+
+.songInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.songName{
+    font-size: 25px;
+}
+
+.songArtist {
+    font-size: 20px;
+}
+
+.songYear {
+    font-size: 20px;
+}
+.albumCover {
+    max-width: 200px;
+    max-height: 125px;
+}
+
+
+.songSelection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+p.songSelectionText {
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.errorText {
+    font-size: 25px;
+}
+
+
+

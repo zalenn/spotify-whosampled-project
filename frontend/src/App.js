@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { access_token, logout, getCurrentUserProfile} from './spotify';
 import {catchErrors} from './utils'
 import {Home} from './pages/exports.js'
+import {Playlist} from './pages/exports.js'
 
 import DaftPunk from './images/artists/daftpunk.jpeg';
 import Donuts from './images/albumcovers/donuts.jpeg';
@@ -88,8 +89,8 @@ function App() {
               <Route path="/playlists/:id">
                 <h1>Playlist</h1>
               </Route>
-              <Route path="/playlists">
-                <h1>Playlists</h1>
+              <Route path="/playlist">
+                <Playlist/>
               </Route>
               <Route path="/">
                 <Home />
