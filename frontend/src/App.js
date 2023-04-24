@@ -80,16 +80,7 @@ function App() {
       </div>
           <Router>
             <Switch>
-              <Route path="/top-artists">
-                <h1>Top Artists</h1>
-              </Route>
-              <Route path="/top-tracks">
-                <h1>Top Tracks</h1>
-              </Route>
-              <Route path="/playlists/:id">
-                <h1>Playlist</h1>
-              </Route>
-              <Route path="/playlist">
+            <Route path="/playlist">
                 <Playlist/>
               </Route>
               <Route path="/">

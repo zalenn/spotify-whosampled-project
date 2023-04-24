@@ -124,3 +124,30 @@ export const getCurrentUserProfile = () => axios.get('/me');
  */
 
 export const getSearch = (query, type) => axios.get(`/search?q=${query}&type=${type}`);
+
+
+/**
+ * Get Recomendations
+ * https://developer.spotify.com/documentation/web-api/reference/get-recommendations
+ * @returns {Promise}
+ */
+
+export const getRecommendations = (seed_artists, seed_genres, seed_tracks, limit, market) => axios.get(`/recommendations?seed_artists=${seed_artists}&seed_genres=${seed_genres}&seed_tracks=${seed_tracks}&limit=${limit}&market=${market}`);
+
+
+/**
+ * Create Playlist
+ * https://developer.spotify.com/documentation/web-api/reference/create-playlist
+ * @returns {Promise}
+ */
+
+// export const createPlaylist = (user_id, name, description, public, collaborative, user) => axios.post(`/users/${user_id}/playlists?name=${name}&description=${description}&public=${public}&collaborative=${collaborative}&user=${user}`);
+
+
+/**
+ * Get Track's Audio Features
+ * https://developer.spotify.com/documentation/web-api/reference/get-audio-features
+ * @returns {Promise}
+ */
+
+export const getAudioFeatures = (id) => axios.get(`/audio-features/${id}`);

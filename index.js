@@ -1,9 +1,20 @@
 const axios = require('axios');
+const cors = require('cors');
 require('dotenv').config();
 const express = require('express');
 const querystring = require('querystring');
 const app = express();
 const port = 8888;
+const puppeteer = require('puppeteer'); 
+
+
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions)) // Use this after the variable declaration
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -27,17 +38,12 @@ const generateRandomString = length => {
   
 
 // Routes
-
-app.get('/', (req, res) => {
-     res.send('Hello World!');
-});
-
 app.get('/login', (req, res) => {
 
     const state = generateRandomString(16);
     res.cookie(stateKey, state);    
     
-    const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
+    const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private playlist-read-private ';
 
     const queryParams = querystring.stringify({
         client_id: CLIENT_ID,
@@ -111,10 +117,61 @@ app.get('/callback', (req, res) => {
   });
 
 
-  app.get('/home', (req, res) => {
+  app.get('/', async (req, res) => {
+   
+  function addDashToSpaces(str) {
+      return str.split(' ').join('-');
+    }
+
+  function sanitizeString(str) {
+    str = str.slice(0, -6);
+    str = str.replace("by ", "");
+    return str;
+  }
+   
+  let {song, artist} = req.query;
+  let sample = true
+
+  artist = addDashToSpaces(artist)
+  song = addDashToSpaces(song)
+
+  console.log(song, artist)
+
+  const browser = await puppeteer.launch({headless: false});
+  const page = await browser.newPage();
+  await page.goto(`https://www.whosampled.com/${artist}/${song}/`);
+
+ try { 
+       var sampleName = await page.$eval( ".trackName", el => el.textContent.trim());
+       var sampleArtist = await page.$eval(".trackArtist", el => el.textContent.trim());
+ 
+  } catch (error) {
+      sample = false
+  }
 
 
-    
+  var testHeader = ""
+
+  try {
+      testHeader = await page.$eval( ".sectionHeader", el => el.textContent.trim())   
+      if (testHeader.includes("Contains") == false) {                // if we don't find this string in the section header, the song contains no samples. 
+          sample = false
+      }
+  }  catch (error) {
+     sample = false
+  }
+
+ switch (sample) {
+  case true:
+    sampleArtist = sanitizeString(sampleArtist)
+    res.status(200).json({sampleName, sampleArtist});
+    // res.redirect(`http://localhost:3000/playlist/`)
+     break;
+  case false:
+    res.status(404).send("This song doesn't contain any samples :( or you entered the wrong artist or song name. Please try again.")
+ }
+
+  await browser.close(); 
 
   });
   
