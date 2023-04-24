@@ -75,6 +75,8 @@ const Home = () => {
       setIsLoading(false);
     }
   };
+
+  const history = useHistory();
   
   const firstResult = searchResults.length > 0 ? searchResults[0] : null;
 
@@ -111,7 +113,7 @@ const Home = () => {
          </div>
        <div className="songSelection">
          <p className='songSelectionText'> "{firstResult.name}" samples: "{sampledSong.name}" by "{sampledSong.artists[0].name}" Would you like to create a playlist based off this song? </p>
-        <Link to = {"/playlist"}>
+        <Link to={{pathname: "/playlist", search: `?searchSong=${firstResult.name}&searchArtist=${firstResult.artists[0].name}&sampledSong=${sampledSong.name}sampledArtist=${sampledSong.artists[0].name}`}}>
            <button className="buttonSubmit">Create My Playlist</button>
         </Link>
     </div>
