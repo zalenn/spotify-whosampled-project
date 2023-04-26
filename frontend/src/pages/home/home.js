@@ -17,8 +17,6 @@ const Home = () => {
   const [foundSample, setFoundSample] = useState(false);
   const [sampledSong, setSampledSong] = useState([]);
 
-
-
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await getCurrentUserProfile();
@@ -70,7 +68,7 @@ const Home = () => {
       } catch (error) {
         console.log(error);
         console.log("Couldn't find a sample for this song on Whosampled.com")
-        setFoundSample(false);
+        setFoundSample(null);
       }
       setIsLoading(false);
     }
@@ -102,7 +100,7 @@ const Home = () => {
        {isLoading ? (
           <div className="loadingSpinner">Loading...</div>
           ) : (foundSample ? (
-           <>
+       <>
           <div className="songResult">
              <img src={sampledSong.album.images[0].url} alt={sampledSong.album.name} className="albumCover" />
             <div className="songInfo">
@@ -116,7 +114,12 @@ const Home = () => {
         <Link to={{pathname: "/playlist", search: `?searchSong=${firstResult.name}&searchArtist=${firstResult.artists[0].name}&sampledSong=${sampledSong.name}sampledArtist=${sampledSong.artists[0].name}`}}>
            <button className="buttonSubmit">Create My Playlist</button>
         </Link>
-    </div>
+       </div>
+     </>
+         ) : (foundSample === null ? (
+            <>
+             <div className="errorText">Either this song does not contain a sample or its not avaliable in the Whosampled database :(</div>
+             <div className="errorText">Try searching for another song.</div>
             </>
        ) : (firstResult ? (
        <>
@@ -133,11 +136,11 @@ const Home = () => {
         <button className="buttonSubmit" onClick={onContinue}>Yes , Continue</button>
     </div>
      </>
-   ) : (
+   ) : ( 
      <>
        <div className="errorText">No song found/searched currently.</div>
      </>
-  )))}
+  ))))}
       </div>
     </>
   );

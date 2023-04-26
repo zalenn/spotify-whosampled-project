@@ -35,7 +35,7 @@ function App() {
      catchErrors(fetchData());
     }, []);
 
-    console.log(access_token);
+    // console.log(access_token);
     console.log("")
 
   return (
