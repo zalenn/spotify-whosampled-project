@@ -119,7 +119,7 @@ const Home = () => {
          ) : (foundSample === null ? (
             <>
              <div className="errorText">Either this song does not contain a sample or its not avaliable in the Whosampled database :(</div>
-             <div className="errorText">Try searching for another song.</div>
+             <div className="errorText">Please refresh the page and search for another song.</div>
             </>
        ) : (firstResult ? (
        <>
