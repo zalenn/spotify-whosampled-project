@@ -1,8 +1,30 @@
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 150px;
+  .title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #333;
+  }
+  .subtitle {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #333;
+  }
+
+}
+
+
 .songResult {
   background-color: white;
   border-radius: 10px;
   display: flex;
-  min-width: 500px;
+  min-width: 400px;
 }
 
 .songInfo {
@@ -66,10 +88,29 @@
     height: 300px;
     width: 600px;
     top: 60px;
-    left: calc(50% - 300px);
+    
     display: flex;
   }
   
+.orginalSongContainer {
+
+  padding-top: 100px;
+  position: absolute;
+  min-height: 100px;
+  max-width: 100px;
+  top: 60px;
+  left: calc(50% - 300px);
+  display: flex;
+}
+
+
+
+
+
+
+
+
+
   .card {
     display: flex;
     height: 280px;
@@ -162,5 +203,5 @@
 
   ul {
     list-style-type: none;
-    color: white;
+    color: black;
   }
