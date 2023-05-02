@@ -12,6 +12,8 @@ const Playlist = () => {
   const [audioFeatures, setAudioFeatures] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [recommendedSongs, setRecommendedSongs] = useState([]);
+
   const location = useLocation();
   const searchSong = new URLSearchParams(location.search).get('searchSong');
   const searchArtist = new URLSearchParams(location.search).get('searchArtist');
@@ -42,7 +44,7 @@ const Playlist = () => {
     const fetchFeatures = async () => {
       try {
         if (sampleResults.length > 0) {
-          console.log(sampleResults[0].id)
+          console.log(sampleResults[0])
           const { data } = await getAudioFeatures(sampleResults[0].id);
           setAudioFeatures(data);
           console.log(data)
@@ -53,6 +55,34 @@ const Playlist = () => {
     };
     catchErrors(fetchFeatures());
   }, [sampleResults]);
+
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const seed_artists = (sampleResults[0].artists[0].id).toString();
+    const seed_tracks = (sampleResults[0].id).toString();
+     const seed_genres = "hip hop"      // using hip hop as seed genre until we figure out how to get genres from artist
+    // (sampleResults[0].artists[0].genres[0]).toString();   //need to figure out how to get genres from artist 
+    const limit = 10;
+    const target_acousticness = audioFeatures.acousticness;
+    const target_danceability = audioFeatures.danceability;
+    const target_energy = audioFeatures.energy;
+    const target_instrumentalness = audioFeatures.instrumentalness;
+    const target_liveness = audioFeatures.liveness;
+    const target_speechiness = audioFeatures.speechiness;
+    const target_valence = audioFeatures.valence;
+    try {
+      const {data} = await getRecommendations(seed_artists, seed_genres, seed_tracks, limit, target_acousticness, target_danceability, target_energy, target_instrumentalness, target_liveness, target_speechiness, target_valence);
+      setRecommendedSongs(data);
+      console.log(data.tracks[0].name)
+      console.log(data.tracks[0].artists[0].name)
+      console.log(data.tracks[0].id)
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className= "main">
@@ -117,7 +147,7 @@ const Playlist = () => {
    </div>
  </div>
  <div > 
-       <button className = "buttonCreate">Create Playlist</button>
+       <button className = "buttonCreate" onClick = {onSubmit}>Create Playlist</button>
     </div>
        </>
     )}

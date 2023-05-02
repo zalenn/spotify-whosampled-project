@@ -132,7 +132,7 @@ export const getSearch = (query, type) => axios.get(`/search?q=${query}&type=${t
  * @returns {Promise}
  */
 
-export const getRecommendations = (seed_artists, seed_genres, seed_tracks, limit, market) => axios.get(`/recommendations?seed_artists=${seed_artists}&seed_genres=${seed_genres}&seed_tracks=${seed_tracks}&limit=${limit}&market=${market}`);
+export const getRecommendations = (seed_artists, seed_genres, seed_tracks, limit, target_acousticness, target_danceability, target_energy, target_instrumentalness, target_liveness, target_speechiness, target_valence) => axios.get(`/recommendations?seed_artists=${seed_artists}&seed_genres=${seed_genres}&seed_tracks=${seed_tracks}&limit=${limit}&target_acousticness=${target_acousticness}&target_danceability=${target_danceability}&target_energy=${target_energy}&target_instrumentalness=${target_instrumentalness}&target_liveness=${target_liveness}&target_speechiness=${target_speechiness}&target_valence=${target_valence}`);
 
 
 /**
