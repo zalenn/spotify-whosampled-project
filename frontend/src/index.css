@@ -10,6 +10,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #92e6e6;
-  overflow: hidden;
+  overflow: scroll;
   display: block;
 }

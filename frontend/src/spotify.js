@@ -136,18 +136,36 @@ export const getRecommendations = (seed_artists, seed_genres, seed_tracks, limit
 
 
 /**
- * Create Playlist
- * https://developer.spotify.com/documentation/web-api/reference/create-playlist
- * @returns {Promise}
- */
-
-// export const createPlaylist = (user_id, name, description, public, collaborative, user) => axios.post(`/users/${user_id}/playlists?name=${name}&description=${description}&public=${public}&collaborative=${collaborative}&user=${user}`);
-
-
-/**
  * Get Track's Audio Features
  * https://developer.spotify.com/documentation/web-api/reference/get-audio-features
  * @returns {Promise}
  */
 
 export const getAudioFeatures = (id) => axios.get(`/audio-features/${id}`);
+
+/**
+ * Add Items to Playlist
+ * https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist
+ * @returns {Promise}
+ */
+
+export const addItemsToPlaylist = (playlist_id, uris) => axios.post(`/playlists/${playlist_id}/tracks?uris=${uris}`);
+
+/**
+ * Create Playlist
+ * https://developer.spotify.com/documentation/web-api/reference/create-playlist
+ * 
+ */
+
+export const createPlaylist = (user_id) => axios.post(`/users/${user_id}/playlists`);
+
+// export const createPlaylist = (user_id, name, description, public_playlist) => axios.post(`/users/${user_id}/playlists`, {name: name, description: description, public: public_playlist});
+
+/**
+ * Get Playlist
+ * https://developer.spotify.com/documentation/web-api/reference/get-playlist
+ * @returns {Promise}
+ */
+
+export const getPlaylist = (playlist_id) => axios.get(`/playlists/${playlist_id}`);
+

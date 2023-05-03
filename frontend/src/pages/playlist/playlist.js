@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { catchErrors } from '../../utils';
-import { getSearch, getRecommendations, getAudioFeatures } from '../../spotify';
+import { getSearch, getRecommendations, getAudioFeatures, createPlaylist, getCurrentUserProfile, addItemsToPlaylist} from '../../spotify';
 import './playlist.scss';
 import { useLocation } from 'react-router-dom';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 const Playlist = () => {
 
@@ -65,7 +66,7 @@ const Playlist = () => {
     const seed_tracks = (sampleResults[0].id).toString();
      const seed_genres = "hip hop"      // using hip hop as seed genre until we figure out how to get genres from artist
     // (sampleResults[0].artists[0].genres[0]).toString();   //need to figure out how to get genres from artist 
-    const limit = 10;
+    const limit = 5;
     const target_acousticness = audioFeatures.acousticness;
     const target_danceability = audioFeatures.danceability;
     const target_energy = audioFeatures.energy;
@@ -76,9 +77,46 @@ const Playlist = () => {
     try {
       const {data} = await getRecommendations(seed_artists, seed_genres, seed_tracks, limit, target_acousticness, target_danceability, target_energy, target_instrumentalness, target_liveness, target_speechiness, target_valence);
       setRecommendedSongs(data);
-      console.log(data.tracks[0].name)
-      console.log(data.tracks[0].artists[0].name)
-      console.log(data.tracks[0].id)
+      console.log(data)
+
+      // For each index in data.tracks, create a new object that contains the name, artist, and id of the song
+      const songList = data.tracks.map((song) => {
+        return {
+          name: song.name,
+          artist: song.artists[0].name,
+          id: song.uri
+        }
+      })
+
+      //For each index in songList, search for the song's album cover art and add them to the object
+      for (let i = 0; i < songList.length; i++) {
+        const { data } = await getSearch(songList[i].name + songList[i].artist, 'track');
+        songList[i].albumCover = data.tracks.items[0].album.images[0].url;
+        }
+
+        // If songList isn't empty, get the current Users ID and create a playlist with the recommended songs
+        if (songList.length > 0) {
+          const { data } = await getCurrentUserProfile();
+          const userId = data.id;
+          const playlistName = "Sample Playlist 1";
+          const playlistDescription = "A playlist based off a sampled contained in a song you searched for."
+        
+          const {data: playlist} = await axios.post(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+            name: playlistName,
+            description: playlistDescription
+            },)
+
+          // Add all the recommended songs to the playlist
+          const playlistId = playlist.id;
+          let uris = songList.map((song) => {
+            return song.id
+          })
+          const { data: playlistItems } = await axios.post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${uris}`, {
+            },)
+      }
+
+      console.log(songList)
+
     } catch (error) {
       console.log(error);
     }
