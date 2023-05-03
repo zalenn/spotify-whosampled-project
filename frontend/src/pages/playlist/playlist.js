@@ -14,6 +14,8 @@ const Playlist = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [recommendedSongs, setRecommendedSongs] = useState([]);
+  const [playlist, setPlaylist] = useState([]);
+  const [displayFinal, setDisplayFinal] = useState(false);
 
   const location = useLocation();
   const searchSong = new URLSearchParams(location.search).get('searchSong');
@@ -113,9 +115,11 @@ const Playlist = () => {
           })
           const { data: playlistItems } = await axios.post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?uris=${uris}`, {
             },)
+            console.log(songList)
+          setPlaylist(songList)
+          setDisplayFinal(true)
       }
-
-      console.log(songList)
+      setIsLoading(false)
 
     } catch (error) {
       console.log(error);
@@ -123,34 +127,31 @@ const Playlist = () => {
   };
 
   return (
-    <div className= "main">
-      {isLoading || searchResults.length < 0  ? (
+    <div className="main">
+      {isLoading || searchResults.length < 0 ? (
         <div className="spinner-container">
           <div className="loading-spinner"></div>
           <p>Loading Song Attributes</p>
         </div>
-      ) : (
+      ) : searchResults.length > 0 && searchResults[0].album && displayFinal != true ? (
         <>
-           {searchResults.length > 0 && searchResults[0].album && (
-            <>
-            <Link to ={{pathname: "/"}}>
-              <button className = "buttonBack">Start Over</button>
-            </Link>
-            <div className='instructions'>
-              <p>Here is the attributes we found for the sampled song.</p>
-              <p>Feel free to edit these attributes to your liking in order to create a playlist based off them.</p>
-            </div>
-            <div className = "orginalSongContainer">
-             <div className="songResult">
-                <img src={searchResults[0].album.images[0].url} alt={searchResults[0].album.name} className="albumCover" />
-               <div className="songInfo">
-                 <p className="songName">{searchResults[0].name}</p>
-                 <p className="songArtist">{searchResults[0].artists[0].name}</p>
-                 <p className="songYear">{searchResults[0].album.release_date.substring(0, 4)}</p>
+          <Link to={{ pathname: "/" }}>
+            <button className="buttonBack">Start Over</button>
+          </Link>
+          <div className="instructions">
+            <p>Here are the attributes we found for the sampled song.</p>
+            <p>Feel free to edit these attributes to your liking in order to create a playlist based off them.</p>
+          </div>
+          <div className="orginalSongContainer">
+            <div className="songResult">
+              <img src={searchResults[0].album.images[0].url} alt={searchResults[0].album.name} className="albumCover" />
+              <div className="songInfo">
+                <p className="songName">{searchResults[0].name}</p>
+                <p className="songArtist">{searchResults[0].artists[0].name}</p>
+                <p className="songYear">{searchResults[0].album.release_date.substring(0, 4)}</p>
               </div>
             </div>
-           </div>
-
+          </div>
 
           <div className = "sampledSongContainer">
             <div className="songResult">
@@ -184,12 +185,18 @@ const Playlist = () => {
      </ul>
    </div>
  </div>
- <div > 
-       <button className = "buttonCreate" onClick = {onSubmit}>Create Playlist</button>
-    </div>
-       </>
-    )}
+
+
+          <div>
+            <button className="buttonCreate" onClick={onSubmit}>Create Playlist</button>
+          </div>
         </>
+      ) : (
+        displayFinal === true ? (
+          <>
+          {playlist[0].name}
+          </>
+        ) : null
       )}
     </div>
   );
