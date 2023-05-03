@@ -86,7 +86,9 @@ const Playlist = () => {
         return {
           name: song.name,
           artist: song.artists[0].name,
-          id: song.uri
+          id: song.uri,
+          albumCover: song.album.images[0].url,
+          url: song.external_urls.spotify
         }
       })
 
@@ -133,7 +135,7 @@ const Playlist = () => {
           <div className="loading-spinner"></div>
           <p>Loading Song Attributes</p>
         </div>
-      ) : searchResults.length > 0 && searchResults[0].album && displayFinal != true ? (
+      ) : searchResults.length > 0 && searchResults[0].album && displayFinal !== true ? (
         <>
           <Link to={{ pathname: "/" }}>
             <button className="buttonBack">Start Over</button>
@@ -185,17 +187,31 @@ const Playlist = () => {
      </ul>
    </div>
  </div>
-
-
           <div>
             <button className="buttonCreate" onClick={onSubmit}>Create Playlist</button>
           </div>
         </>
       ) : (
         displayFinal === true ? (
-          <>
-          {playlist[0].name}
-          </>
+      <>
+         <Link to={{ pathname: "/" }}>
+            <button className="buttonBack">Start Over</button>
+          </Link>
+     <div class="container">
+        {[...Array(5)].map((_, index) => (
+         <div class="cardInfo" key={index}>
+          <div class="card">
+            <a href={playlist[index].url} target="_blank" rel="noreferrer">
+              <img src={playlist[index].albumCover} alt={playlist[index].name} className="playlistImage" />
+            </a>
+         </div>
+           <h3>{playlist[index].name}</h3>
+           <p>{playlist[index].artist}</p>
+         </div>
+      ))}
+    </div>
+         
+      </>
         ) : null
       )}
     </div>
