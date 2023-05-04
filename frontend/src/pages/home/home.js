@@ -51,7 +51,7 @@ const Home = () => {
 
         if (response.status === 200) {
           console.log("Found a sample for this song on Whosampled.com")
-          const {data} = await getSearch(response.data.sampleName, 'track');
+          const {data} = await getSearch(response.data.sampleName + response.data.sampleArtist, 'track');
           console.log("Sample name: " + data.tracks.items[0].name)
           let sampledSongResults = data.tracks.items;
   

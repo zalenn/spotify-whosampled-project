@@ -16,6 +16,7 @@ const Playlist = () => {
   const [recommendedSongs, setRecommendedSongs] = useState([]);
   const [playlist, setPlaylist] = useState([]);
   const [displayFinal, setDisplayFinal] = useState(false);
+  const [playlistID, setPlaylistID] = useState(false);
 
   const location = useLocation();
   const searchSong = new URLSearchParams(location.search).get('searchSong');
@@ -68,7 +69,7 @@ const Playlist = () => {
     const seed_tracks = (sampleResults[0].id).toString();
      const seed_genres = "hip hop"      // using hip hop as seed genre until we figure out how to get genres from artist
     // (sampleResults[0].artists[0].genres[0]).toString();   //need to figure out how to get genres from artist 
-    const limit = 5;
+    const limit = 20;
     const target_acousticness = audioFeatures.acousticness;
     const target_danceability = audioFeatures.danceability;
     const target_energy = audioFeatures.energy;
@@ -119,6 +120,7 @@ const Playlist = () => {
             },)
             console.log(songList)
           setPlaylist(songList)
+          setPlaylistID(playlistId.toString())
           setDisplayFinal(true)
       }
       setIsLoading(false)
@@ -197,6 +199,8 @@ const Playlist = () => {
          <Link to={{ pathname: "/" }}>
             <button className="buttonBack">Start Over</button>
           </Link>
+          <h1>Here is your playlist based on the song attributes you selected from the song: </h1>
+          <h2>{sampleResults[0].name}</h2>
      <div class="container">
         {[...Array(5)].map((_, index) => (
          <div class="cardInfo" key={index}>
@@ -210,7 +214,13 @@ const Playlist = () => {
          </div>
       ))}
     </div>
-         
+    <div className = "exitText">
+            <h1>Above are just some of the songs we've selected for you.</h1> 
+            <a href = {`https://open.spotify.com/playlist/${playlistID}`}
+            target="_blank" rel="noreferrer">
+            <button className = "buttonPlaylist">Click here to see the full playlist.</button>
+            </a>
+        </div>
       </>
         ) : null
       )}
