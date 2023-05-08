@@ -4,12 +4,9 @@
 
 
 # Overview
-This project was done as Capstone Project for Fordham University's Master Program in Computer Science. I wanted to choose a project that would challenge me, but also intertwine topics I was interested in (all while being managable to complete within a semester). I had done one previous beginner project involving React and NoSQL, so I wanted to 
+This application takes song input from the user and webscrapes (whosampled.com), a library with a vast database on song information containing samples, in order to determine if the inputted song contains a sample or not. If so, the app will grab sampled song features/attributes based on Spotify's Web API and allow the user to change some of these features to generate a playlist based off their tailored selections. 
 
-
-
-
-
+This project was done as Capstone Project for Fordham University's Master Program in Computer Science. I wanted to choose a project that would challenge me, but also intertwine topics I was interested in (all while being managable to complete within a semester). I had done one previous beginner project involving React and NoSQL, so I wanted to do something a little more challenging. I've always been insterested in music sampling and plunderphonics so I thought this would be a good project to explore. I also haven't had any experience in webscraping before so this was a small introduction to that. 
 
 # How To Run
 Make sure you have the latest version of node.js installed on your computer. 
@@ -25,6 +22,7 @@ Then be sure to install node libraries
 - concurrently (to run the client and server at the same time)
 - axios (handle API calls)
 - express (server)
+- puppeteer
 - dotenv
 - react-scripts
 - web-vitals
@@ -38,8 +36,7 @@ Then be sure to install node libraries
 
 3.) In some cases, the sample contained in the song simply does not exist on Spotify so the correct result will not appear. 
 
-
-
+4.) Not really a "issue" perse but some songs contain multiple samples, so this app will only take the first result listed from Whosampled.
 
 # Credits 
 I'd like to thank Professor Nikitas Kounavelis and my classmates in my Capstone Project class for their feedback and encouragement while making this project. I'd also like to link Brittany Chiang's "Spotify Connected App" course/tutorial, since it was a big help in the beginning stages of this project to learn how to use Spotify's API and set up the OAuth process properly. [You can visit the course by clicking this link] (https://www.newline.co/courses/build-a-spotify-connected-app/welcome).
