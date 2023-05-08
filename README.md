@@ -1,6 +1,6 @@
 # spotify-whosampled-project
 
-
+![](https://github.com/zalenn/spotify-whosampled-project/blob/main/PlaylistMakerDemo.gif)
 
 
 
