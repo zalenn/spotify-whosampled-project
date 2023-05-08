@@ -8,7 +8,7 @@ This application takes song input from the user and webscrapes (https://whosampl
 
 This project was done as Capstone Project for Fordham University's Master Program in Computer Science. I wanted to choose a project that would challenge me, but also intertwine topics I was interested in (all while being managable to complete within a semester). I had done one previous beginner project involving React and NoSQL, so I wanted to do something a little more challenging. I've always been insterested in music sampling and plunderphonics so I thought this would be a good project to explore. I also haven't had any experience in webscraping before so this was a small introduction to that. 
 
-# How To Run
+# How To Run Locally
 Make sure you have the latest version of node.js installed on your computer. 
 Please note this will not run past the login screen as is, due to the client secret and ID not being publicly available. You must create your own .env file and insert the following (https://developer.spotify.com/): 
 
