@@ -10,7 +10,7 @@ This project was done as Capstone Project for Fordham University's Master Progra
 
 # How To Run
 Make sure you have the latest version of node.js installed on your computer. 
-Please note this will not run past the login screen as is due to the client secret and ID not being publicly available. You must create your own .env file and insert the following (https://developer.spotify.com/): 
+Please note this will not run past the login screen as is, due to the client secret and ID not being publicly available. You must create your own .env file and insert the following (https://developer.spotify.com/): 
 
 CLIENT_ID = ``` your client ID goes here ``` <br />
 CLIENT_SECRET = ``` your client secret goes here ``` <br />
