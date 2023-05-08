@@ -22,7 +22,7 @@ Then be sure to install the following node libraries:
 - concurrently (to run the client and server at the same time)
 - axios (handle API calls)
 - express (server)
-- puppeteer
+- puppeteer (web scraping)
 - dotenv
 - react-scripts
 - web-vitals
