@@ -45,7 +45,7 @@ function App() {
     <div className = "header"></div>
       <div className='wrapper'>
        <div className = "welcomeText">
-           <h1 className = "welcomeTextAnimation">Welcome to (website title here) ! </h1>
+           <h1 className = "welcomeTextAnimation">Welcome to Sample PlaylistMaker ! </h1>
            <p className = "welcomeTextAnimationP">Before we can get started making you quality recommendations, we need you authorize this application with Spotify below.  </p>
            <a className="button" href="http://localhost:8888/login"> LOGIN TO SPOTIFY </a>
         </div> 

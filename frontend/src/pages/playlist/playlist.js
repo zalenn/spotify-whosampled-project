@@ -28,7 +28,7 @@ const Playlist = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const { data } = await getSearch(searchSong + searchArtist, 'track');
+        const { data } = await getSearch(searchSong + " " + searchArtist, 'track');
         setSearchResults(data.tracks.items);
         console.log(data.tracks.items[0]);
        
@@ -200,7 +200,7 @@ const Playlist = () => {
             <button className="buttonBack">Start Over</button>
           </Link>
           <h1>Here is your playlist based on the song attributes you selected from the song: </h1>
-          <h2>{sampleResults[0].name}</h2>
+          <h2>{sampleResults[0].name} by {sampleResults[0].artists[0].name}</h2>
      <div class="container">
         {[...Array(5)].map((_, index) => (
          <div class="cardInfo" key={index}>

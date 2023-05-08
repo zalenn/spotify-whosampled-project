@@ -51,7 +51,7 @@ const Home = () => {
 
         if (response.status === 200) {
           console.log("Found a sample for this song on Whosampled.com")
-          const {data} = await getSearch(response.data.sampleName + response.data.sampleArtist, 'track');
+          const {data} = await getSearch(response.data.sampleName + " " + response.data.sampleArtist, 'track');
           console.log("Sample name: " + data.tracks.items[0].name)
           let sampledSongResults = data.tracks.items;
   
@@ -81,7 +81,7 @@ const Home = () => {
   return (
     <>
         <div className="main">
-          <h1>Welcome To (website title)</h1>
+          <h1>Welcome To Sample PlaylistMaker!</h1>
           <p>To start making you a playlist, please enter a song below.</p>
           <form onSubmit={onSubmit}>
             <div className="songInputDiv">
@@ -119,7 +119,7 @@ const Home = () => {
          ) : (foundSample === null ? (
             <>
              <div className="errorText">Either this song does not contain a sample or its not avaliable in the Whosampled database :(</div>
-             <div className="errorText">Please refresh the page and search for another song.</div>
+             <div className="errorTextBold">Please refresh the page and search for another song.</div>
             </>
        ) : (firstResult ? (
        <>
