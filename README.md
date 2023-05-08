@@ -4,7 +4,7 @@
 
 
 # Overview
-This application takes song input from the user and webscrapes (whosampled.com), a library with a vast database of song information containing samples, in order to determine if the inputted song contains a sample or not. If so, the app will grab sampled song features/attributes based on Spotify's Web API and allow the user to change some of these features to generate a playlist based off their tailored selections. 
+This application takes song input from the user and webscrapes (https://whosampled.com), a library with a vast database of song information containing samples, in order to determine if the inputted song contains a sample or not. If so, the app will grab sampled song features/attributes based on Spotify's Web API and allow the user to change some of these features to generate a playlist based off their tailored selections. 
 
 This project was done as Capstone Project for Fordham University's Master Program in Computer Science. I wanted to choose a project that would challenge me, but also intertwine topics I was interested in (all while being managable to complete within a semester). I had done one previous beginner project involving React and NoSQL, so I wanted to do something a little more challenging. I've always been insterested in music sampling and plunderphonics so I thought this would be a good project to explore. I also haven't had any experience in webscraping before so this was a small introduction to that. 
 
