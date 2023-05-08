@@ -18,7 +18,7 @@ REDIRECT_URI = http://localhost:8888/callback // make sure to add this within yo
 FRONTEND_URI = http://localhost:3000 <br />
 
 
-Then be sure to install node libraries 
+Then be sure to install the following node libraries:
 - concurrently (to run the client and server at the same time)
 - axios (handle API calls)
 - express (server)
