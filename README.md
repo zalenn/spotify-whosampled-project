@@ -15,10 +15,10 @@ This project was done as Capstone Project for Fordham University's Master Progra
 Make sure you have the latest version of node.js installed on your computer. 
 Please not this will not run past the login screen as is due to the client secret and ID not being publicly available. You must create your own .env file and insert the following (https://developer.spotify.com/): 
 
-CLIENT_ID = ``` your client ID goes here ```
-CLIENT_SECRET = ``` your client_secret goes here ```
-REDIRECT_URI = http://localhost:8888/callback ``` make sure to add this within your project settings in the Spotify dashboard ```
-FRONTEND_URI = http://localhost:3000
+CLIENT_ID = ``` your client ID goes here ``` <br />
+CLIENT_SECRET = ``` your client_secret goes here ``` <br />
+REDIRECT_URI = http://localhost:8888/callback ``` make sure to add this within your project settings in the Spotify dashboard ```<br />
+FRONTEND_URI = http://localhost:3000 <br />
 
 
 Then be sure to install node libraries 
