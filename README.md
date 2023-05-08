@@ -36,7 +36,7 @@ Then be sure to install the following node libraries:
 
 3.) In some cases, the sample contained in the song simply does not exist on Spotify so the correct result will not appear. 
 
-4.) Not really a "issue" perse but some songs contain multiple samples, so this app will only take the first result listed from Whosampled.
+4.) Not really a "issue" per se but some songs contain multiple samples, so this app will only take the first result listed from Whosampled.
 
 # Credits 
 I'd like to thank Professor Nikitas Kounavelis and my classmates in my Capstone Project class for their feedback and encouragement while making this project. I'd also like to link Brittany Chiang's "Spotify Connected App" course/tutorial, since it was a big help in the beginning stages of this project to learn how to use Spotify's API and set up the OAuth process properly. [You can visit the course by clicking this link] (https://www.newline.co/courses/build-a-spotify-connected-app/welcome).
