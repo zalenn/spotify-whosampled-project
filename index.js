@@ -132,6 +132,14 @@ app.get('/callback', (req, res) => {
   let {song, artist} = req.query;
   let sample = true
 
+  const featureIndex = song.indexOf("(ft.");
+  if (featureIndex !== -1) {
+    song = song.slice(0, featureIndex).trim();
+  }
+
+  console.log(song)
+
+
   artist = addDashToSpaces(artist)
   song = addDashToSpaces(song)
 
